@@ -1,5 +1,8 @@
 const express = require('express')
 const app = express()
+const m1_router = require("./Routers/m1-route")
+
+app.use("/", m1_router)
 
 app.use("/page1", (req, res, next) => {
     console.log(req.url + " requested")
@@ -9,6 +12,12 @@ app.use("/page1", (req, res, next) => {
 app.get("/", (req, res) => {
     res.send('Hello World')
 })
+
+app.get("/h*", function(req, res) {
+    res.send('H GET route');
+})
+
+app.get("/products/:id/:name")
 
 app.get("/page1", (req, res, next) => {
     //console.log("page1 called")
